@@ -9,6 +9,8 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 const form = useForm({
     name: '',
     email: '',
+    phone: '',
+    country: '',
     password: '',
     password_confirmation: '',
     terms: false,
@@ -27,14 +29,26 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Full name" />
                 <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email address" />
                 <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
+                <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="phone" value="Nigerian mobile number" />
+                <TextInput id="phone" type="phone" class="mt-1 block w-full" v-model="form.phone" required autocomplete="phone" />
+                <InputError class="mt-2" :message="form.errors.phone" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="country" value="Country" />
+                <TextInput id="country" type="country" class="mt-1 block w-full" v-model="form.country" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
