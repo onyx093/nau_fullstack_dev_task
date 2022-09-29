@@ -28,14 +28,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware('auth')->group( function() {
+Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->middleware(['verified'])->name('dashboard');
 
     Route::resource('/companies', CompaniesController::class)->except(['show']);
-    Route::get('/user-profile', [UserProfileSettingsController::class, 'index'])->name('user-profile');
+    Route::get('/user-profile', [UserProfileSettingsController::class, 'edit'])->name('user.profile');
+    Route::put('/user-profile', [UserProfileSettingsController::class, 'update'])->name('user.profile');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

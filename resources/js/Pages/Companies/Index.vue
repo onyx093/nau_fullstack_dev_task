@@ -31,7 +31,7 @@ defineProps({
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="flex justify-between border-b-2 border-slate-300 sm:py-3">
                             <h2 class="text-2xl font-semibold">Companies list</h2>
-                            <div class="mt-5 flex lg:mt-0 lg:ml-4">
+                            <div v-show="userCompanies.length < 3" class="mt-5 flex lg:mt-0 lg:ml-4">
                                 <span class="sm:ml-3">
                                     <NavLink :href="route('companies.create')">
                                         <button type="button"

@@ -18,7 +18,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.put(route('companies.update',), {
+    form.put(route('companies.update', props.company.id), {
         onFinish: () => form.reset('companyName', 'companyEmail', 'location'),
     });
 };
@@ -43,7 +43,7 @@ const submit = () => {
                         <div class="flex justify-between sm:py-3">
                             <h2 class="text-2xl font-semibold">Add New Company</h2>
                         </div>
-                        <form class="space-y-6" @submit.prevent="form.put(route('companies.update', company.id))">
+                        <form class="space-y-6" @submit.prevent="submit">
                             <div>
                                 <InputLabel for="name" value="Company name" />
                                 <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.companyName"

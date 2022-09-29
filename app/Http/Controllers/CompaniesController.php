@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CompaniesController extends Controller
 {
@@ -53,7 +54,7 @@ class CompaniesController extends Controller
         $user = Auth::user();
         $user->companies()->save($createdCompany);
 
-        return Inertia::location(route('companies.index'));
+        return Redirect::route('companies.index');
     }
 
     /**
@@ -98,7 +99,7 @@ class CompaniesController extends Controller
         $company->location = $request->location;
         $company->save();
 
-        return Inertia::location(route('companies.index'));
+        return Redirect::route('companies.index');
     }
 
     /**
@@ -110,6 +111,6 @@ class CompaniesController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return Inertia::location(route('companies.index'));
+        return Redirect::route('companies.index');
     }
 }
