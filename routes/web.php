@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\UserProfileSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +28,14 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('auth')->group( function() {
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->middleware(['verified'])->name('dashboard');
+
+    Route::resource('/companies', CompaniesController::class)->except(['show']);
+    Route::get('/user-profile', [UserProfileSettingsController::class, 'index'])->name('user-profile');
+});
 
 require __DIR__.'/auth.php';
