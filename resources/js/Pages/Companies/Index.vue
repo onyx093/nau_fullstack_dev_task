@@ -41,7 +41,7 @@ watch(search, value => {
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="flex items-center justify-between border-b-2 border-slate-300 sm:py-3">
                             <h2 class="text-2xl font-semibold">Companies list</h2>
-                            <TextInput id="search" type="text" class="max-w-sm" v-model="search" required autofocus
+                            <TextInput id="search" type="text" class="max-w-sm" v-model="search" required
                                 autocomplete="search" placeholder="Search..." />
                             <div v-show="userCompanies.length < 3" class="mt-5 flex lg:mt-0 lg:ml-4">
                                 <span class="sm:ml-3">

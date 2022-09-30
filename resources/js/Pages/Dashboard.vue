@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
-import { ArrowUpLeftIcon, InboxIcon, MapPinIcon } from '@heroicons/vue/20/solid';
+import { ArrowUpLeftIcon, DevicePhoneMobileIcon, InboxIcon, MapPinIcon } from '@heroicons/vue/20/solid';
 import NavLink from '@/Components/NavLink.vue';
 </script>
 
@@ -26,15 +26,16 @@ import NavLink from '@/Components/NavLink.vue';
                                 }}</h2>
                                 <div class="flex flex-row space-x-8 text-gray-500">
                                     <div class="flex">
-                                        <MapPinIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                        <MapPinIcon class="-ml-1 mr-2 h-5 w-5 text-red-500" aria-hidden="true" />
                                         <p>{{ $page.props.auth.user.country}}</p>
                                     </div>
                                     <div class="flex">
-                                        <InboxIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                        <DevicePhoneMobileIcon class="-ml-1 mr-2 h-5 w-5 text-red-500"
+                                            aria-hidden="true" />
                                         <p>{{ $page.props.auth.user.phone}}</p>
                                     </div>
                                     <div class="flex">
-                                        <InboxIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                        <InboxIcon class="-ml-1 mr-2 h-5 w-5 text-red-500" aria-hidden="true" />
                                         <p>{{ $page.props.auth.user.email}}</p>
                                     </div>
                                 </div>
