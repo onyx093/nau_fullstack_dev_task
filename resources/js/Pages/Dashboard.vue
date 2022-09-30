@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
-import { ArrowUpLeftIcon } from '@heroicons/vue/20/solid';
+import { ArrowUpLeftIcon, InboxIcon, MapPinIcon } from '@heroicons/vue/20/solid';
 import NavLink from '@/Components/NavLink.vue';
 </script>
 
@@ -21,7 +21,24 @@ import NavLink from '@/Components/NavLink.vue';
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div class="flex justify-between border-b-2 border-slate-300 sm:py-3">
-                            <h2 class="text-2xl font-semibold">Dashboard</h2>
+                            <div class="flex flex-col">
+                                <h2 class="text-3xl font-extrabold">Welcome, {{ $page.props.auth.user.name
+                                }}</h2>
+                                <div class="flex flex-row space-x-8 text-gray-500">
+                                    <div class="flex">
+                                        <MapPinIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                        <p>{{ $page.props.auth.user.country}}</p>
+                                    </div>
+                                    <div class="flex">
+                                        <InboxIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                        <p>{{ $page.props.auth.user.phone}}</p>
+                                    </div>
+                                    <div class="flex">
+                                        <InboxIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                        <p>{{ $page.props.auth.user.email}}</p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mt-5 flex lg:mt-0 lg:ml-4">
                                 <span class="sm:ml-3">
                                     <NavLink :href="route('companies.index')">

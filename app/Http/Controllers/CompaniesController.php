@@ -18,8 +18,21 @@ class CompaniesController extends Controller
      */
     public function index()
     {
+        $companies = Company::query()
+            ->where('user_id', Auth::user()->id)
+            ->when(request()->input('search'), function ($query, $search) {
+                $query->where('name', 'like', "%{$search}%");
+            })->get()->map(fn ($company) => [
+                'id' => $company->id,
+                'name' => $company->name,
+                'email' => $company->email,
+                'location' => $company->location,
+                'created_at' => $company->created_at->format('d/m/Y'),
+            ]);
+        // dd($companies);
         return Inertia::render('Companies/Index', [
-            'userCompanies' => Auth::user()->companies
+            'userCompanies' => $companies,
+            'filters' => request()->only(['search']),
         ]);
     }
 

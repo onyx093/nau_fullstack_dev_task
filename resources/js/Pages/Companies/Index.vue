@@ -1,15 +1,25 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import TextInput from '@/Components/TextInput.vue';
 import { Head, usePage } from '@inertiajs/inertia-vue3';
-import {
-    PlusIcon
-} from '@heroicons/vue/20/solid';
+import { PlusIcon } from '@heroicons/vue/20/solid';
 import NavLink from '@/Components/NavLink.vue';
 import CompanyList from '@/Components/CompanyList.vue';
+import { Inertia } from '@inertiajs/inertia';
 
-defineProps({
+let props = defineProps({
     userCompanies: Array,
+    filters: Object,
+});
+
+const search = ref(props.filters.search);
+
+watch(search, value => {
+    Inertia.get(route('companies.index'), { search: value }, {
+        preserveState: true,
+        replace: true,
+    });
 });
 
 </script>
@@ -29,8 +39,10 @@ defineProps({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <div class="flex justify-between border-b-2 border-slate-300 sm:py-3">
+                        <div class="flex items-center justify-between border-b-2 border-slate-300 sm:py-3">
                             <h2 class="text-2xl font-semibold">Companies list</h2>
+                            <TextInput id="search" type="text" class="max-w-sm" v-model="search" required autofocus
+                                autocomplete="search" placeholder="Search..." />
                             <div v-show="userCompanies.length < 3" class="mt-5 flex lg:mt-0 lg:ml-4">
                                 <span class="sm:ml-3">
                                     <NavLink :href="route('companies.create')">
