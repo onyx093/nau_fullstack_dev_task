@@ -23,7 +23,6 @@ class UserProfileSettingsController extends Controller
             'fullname' => 'required|string|max:255',
             'phone' => 'required|string|digits:11',
             'country' => 'required|string|max:50',
-            // 'password' => ['sometimes', 'required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = Auth::user();

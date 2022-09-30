@@ -29,7 +29,6 @@ class CompaniesController extends Controller
                 'location' => $company->location,
                 'created_at' => $company->created_at->format('d/m/Y'),
             ]);
-        // dd($companies);
         return Inertia::render('Companies/Index', [
             'userCompanies' => $companies,
             'filters' => request()->only(['search']),
