@@ -32,6 +32,7 @@ class CompaniesController extends Controller
         return Inertia::render('Companies/Index', [
             'userCompanies' => $companies,
             'filters' => request()->only(['search']),
+            'companyCount' => Auth::user()->companies->count(),
         ]);
     }
 
